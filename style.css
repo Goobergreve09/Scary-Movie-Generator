@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Creepster&family=Inter:wght@400;500;700;800&display=swap');
+
+:root {
+    --black: #070707;
+    --dark: #101010;
+    --card: rgba(18, 18, 18, 0.94);
+    --orange: #ff6a00;
+    --orange-light: #ff9d3c;
+    --red: #b30000;
+    --text: #f3f3f3;
+    --muted: #999;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    color: var(--text);
+    font-family: "Inter", Arial, sans-serif;
+    background:
+        radial-gradient(circle at 50% 20%, rgba(111, 0, 0, 0.16), transparent 30%),
+        radial-gradient(circle at 50% 100%, rgba(255, 74, 0, 0.08), transparent 35%),
+        var(--black);
+    overflow-x: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.09;
+    background-image:
+        linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 4px 4px;
+    z-index: 5;
+}
+
+.app {
+    width: min(900px, calc(100% - 32px));
+    margin: 0 auto;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 60px 0;
+    position: relative;
+    z-index: 2;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 34px;
+}
+
+.eyebrow {
+    margin: 0 0 8px;
+    color: var(--orange);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+}
+
+h1 {
+    margin: 0;
+    font-family: "Creepster", cursive;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    font-weight: 400;
+    line-height: 0.95;
+    letter-spacing: 0.02em;
+    color: #f5f5f5;
+    text-shadow:
+        0 0 12px rgba(255, 106, 0, 0.25),
+        4px 4px 0 #5e0800;
+}
+
+.subtitle {
+    margin: 18px 0 0;
+    color: #aaa;
+    font-size: 1rem;
+}
+
+.generator-card {
+    position: relative;
+    text-align: center;
+    background: linear-gradient(145deg, rgba(27,27,27,.98), rgba(9,9,9,.98));
+    border: 1px solid #333;
+    border-radius: 20px;
+    padding: 58px 30px 42px;
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.65),
+        0 0 60px rgba(179,0,0,.07);
+    overflow: hidden;
+}
+
+.generator-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 8%;
+    right: 8%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--red), var(--orange), var(--red), transparent);
+    box-shadow: 0 0 20px rgba(255,106,0,.5);
+}
+
+.skull {
+    font-size: 2.2rem;
+    opacity: .8;
+    margin-bottom: 8px;
+    filter: grayscale(1);
+}
+
+.result-label {
+    color: var(--orange);
+    font-size: .72rem;
+    font-weight: 800;
+    letter-spacing: .28em;
+    margin: 0 0 15px;
+}
+
+#movieTitle {
+    min-height: 1.15em;
+    margin: 0 auto 12px;
+    font-size: clamp(2.1rem, 6vw, 4.5rem);
+    line-height: 1.05;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: -.03em;
+    overflow-wrap: anywhere;
+}
+
+#movieTitle.reveal {
+    animation: reveal .55s cubic-bezier(.2,.8,.2,1);
+}
+
+@keyframes reveal {
+    0% {
+        opacity: 0;
+        transform: scale(.9) translateY(10px);
+        filter: blur(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+        filter: blur(0);
+    }
+}
+
+.movie-count {
+    color: var(--muted);
+    min-height: 1.3em;
+    font-size: .82rem;
+    margin: 0 0 28px;
+}
+
+#pickButton {
+    border: 0;
+    border-radius: 9px;
+    padding: 17px 28px;
+    min-width: 235px;
+    color: #111;
+    background: linear-gradient(135deg, var(--orange-light), var(--orange));
+    font-family: inherit;
+    font-size: .9rem;
+    font-weight: 900;
+    letter-spacing: .12em;
+    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(255, 106, 0, .18);
+    transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
+}
+
+#pickButton:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.1);
+    box-shadow: 0 15px 40px rgba(255, 106, 0, .3);
+}
+
+#pickButton:active {
+    transform: translateY(0);
+}
+
+.button-icon {
+    margin-right: 8px;
+}
+
+.secondary-button {
+    display: block;
+    margin: 17px auto 0;
+    border: 0;
+    background: transparent;
+    color: #777;
+    font-family: inherit;
+    font-size: .75rem;
+    cursor: pointer;
+}
+
+.secondary-button:hover {
+    color: #bbb;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    margin-top: 22px;
+}
+
+.filter-group {
+    width: min(360px, 100%);
+}
+
+.filter-group label {
+    display: block;
+    margin-bottom: 7px;
+    color: #777;
+    font-size: .72rem;
+    font-weight: 700;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: .14em;
+}
+
+select {
+    width: 100%;
+    border: 1px solid #333;
+    border-radius: 9px;
+    padding: 12px 14px;
+    color: #ddd;
+    background: #141414;
+    font-family: inherit;
+    outline: none;
+    cursor: pointer;
+}
+
+select:focus {
+    border-color: #666;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #555;
+    font-size: .72rem;
+}
+
+.fog {
+    position: fixed;
+    width: 500px;
+    height: 180px;
+    background: rgba(255,255,255,.025);
+    filter: blur(45px);
+    border-radius: 50%;
+    pointer-events: none;
+}
+
+.fog-one {
+    left: -180px;
+    bottom: 15%;
+    transform: rotate(-12deg);
+}
+
+.fog-two {
+    right: -180px;
+    top: 20%;
+    transform: rotate(18deg);
+}
+
+@media (max-width: 600px) {
+    .app {
+        width: min(100% - 22px, 900px);
+        padding: 35px 0;
+    }
+
+    .generator-card {
+        padding: 45px 18px 35px;
+    }
+
+    #pickButton {
+        width: 100%;
+    }
+}

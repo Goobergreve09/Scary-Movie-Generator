@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>October Horror Movie Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="fog fog-one"></div>
+    <div class="fog fog-two"></div>
+
+    <main class="app">
+        <header class="hero">
+            <p class="eyebrow">31 Nights of Fear</p>
+            <h1>What Are We Watching?</h1>
+            <p class="subtitle">Let fate choose your next horror movie.</p>
+        </header>
+
+        <section class="generator-card" aria-live="polite">
+            <div class="skull">☠</div>
+            <p class="result-label">TONIGHT'S PICK</p>
+            <h2 id="movieTitle">???</h2>
+            <p id="movieCount" class="movie-count">Hundreds of movies are waiting...</p>
+
+            <button id="pickButton" type="button">
+                <span class="button-icon">🎃</span>
+                PICK A MOVIE
+            </button>
+
+            <button id="resetButton" class="secondary-button" type="button">
+                Reset Movie History
+            </button>
+        </section>
+
+        <section class="controls">
+            <div class="filter-group">
+                <label for="genreSelect">Choose your fate</label>
+                <select id="genreSelect">
+                    <option value="all">All Horror Movies</option>
+                    <option value="classic">Classic Horror</option>
+                    <option value="slasher">Slashers</option>
+                    <option value="supernatural">Supernatural</option>
+                    <option value="psychological">Psychological</option>
+                    <option value="creature">Creature / Monster</option>
+                    <option value="zombie">Zombies / Infection</option>
+                    <option value="found-footage">Found Footage</option>
+                    <option value="comedy">Horror Comedy</option>
+                    <option value="sci-fi">Sci-Fi Horror</option>
+                </select>
+            </div>
+        </section>
+
+        <footer>
+            <p>Pick a movie. Turn off the lights. Regret everything.</p>
+        </footer>
+    </main>
+
+    <script src="movies.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
