@@ -2,6 +2,8 @@
 
 A vanilla HTML/CSS/JavaScript horror movie randomizer.
 
+https://goobergreve09.github.io/Scary-Movie-Generator/
+
 ## Run it
 Open `index.html` in a browser.
 
