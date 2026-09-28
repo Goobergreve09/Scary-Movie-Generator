@@ -38,32 +38,61 @@ function pickMovie() {
     void movieTitle.offsetWidth;
     movieTitle.classList.add("reveal");
 
-    movieTitle.textContent = selectedMovie.title;
+    // Create the IMDb link
+    const movieLink = document.createElement("a");
 
-    const total = getFilteredMovies().length;
-    const used = total - remainingMovies.length;
+    movieLink.id = "movieLink";
+    movieLink.target = "_blank";
+    movieLink.rel = "noopener noreferrer";
+    movieLink.textContent = selectedMovie.title;
+    movieLink.setAttribute(
+        "aria-label",
+        `Open ${selectedMovie.title} on IMDb`
+    );
 
-    movieCount.textContent = `${remainingMovies.length} movies remaining in this pool`;
+    // Use the IMDb ID when available.
+    // Otherwise, fall back to an IMDb search.
+    if (selectedMovie.imdbId) {
+        movieLink.href = `https://www.imdb.com/title/${selectedMovie.imdbId}/`;
+    } else {
+        movieLink.href = `https://www.imdb.com/find/?q=${encodeURIComponent(
+            selectedMovie.title
+        )}`;
+    }
+
+    // Clear the old title and add the new link
+    movieTitle.innerHTML = "";
+    movieTitle.appendChild(movieLink);
+
+    movieCount.textContent =
+        `${remainingMovies.length} movies remaining in this pool`;
 }
 
 function changeGenre() {
     currentGenre = genreSelect.value;
+
     resetPool();
 
     const total = getFilteredMovies().length;
-    movieCount.textContent = `${total} movies available`;
 
+    movieCount.textContent = `${total} movies available`;
     movieTitle.textContent = "???";
 }
 
 pickButton.addEventListener("click", pickMovie);
+
 genreSelect.addEventListener("change", changeGenre);
 
 resetButton.addEventListener("click", () => {
     resetPool();
+
     movieTitle.textContent = "???";
-    movieCount.textContent = `${getFilteredMovies().length} movies available`;
+    movieCount.textContent =
+        `${getFilteredMovies().length} movies available`;
 });
 
+// Initial setup
 resetPool();
-movieCount.textContent = `${getFilteredMovies().length} movies available`;
+
+movieCount.textContent =
+    `${getFilteredMovies().length} movies available`;

@@ -20,3 +20,8 @@ You can add more movies by adding objects to `movies.js`:
 
 Available genres:
 classic, slasher, supernatural, psychological, creature, zombie, found-footage, comedy, sci-fi
+
+
+## IMDb links
+
+Movies with a verified `imdbId` open directly to their IMDb title page. Movies without an ID currently open IMDb's title search for that movie rather than using an unverified ID.
