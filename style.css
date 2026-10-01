@@ -274,6 +274,113 @@ footer {
     transform: rotate(18deg);
 }
 
+/* Decade dropdown */
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    margin-top: 22px;
+}
+
+.decade-dropdown {
+    position: relative;
+}
+
+.decade-button {
+    width: 100%;
+    border: 1px solid #333;
+    border-radius: 9px;
+    padding: 12px 14px;
+    color: #ddd;
+    background: #141414;
+    font-family: inherit;
+    font-size: inherit;
+    text-align: left;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: border-color .2s ease, background .2s ease;
+}
+
+.decade-button:hover {
+    border-color: #555;
+}
+
+.decade-button:focus {
+    outline: none;
+    border-color: #666;
+}
+
+.dropdown-arrow {
+    color: var(--orange);
+    font-size: .65rem;
+    transition: transform .2s ease;
+}
+
+.decade-button[aria-expanded="true"] .dropdown-arrow {
+    transform: rotate(180deg);
+}
+
+.decade-menu {
+    position: absolute;
+    top: calc(100% + 7px);
+    left: 0;
+    right: 0;
+    z-index: 10;
+    display: none;
+    padding: 6px;
+    background: #141414;
+    border: 1px solid #333;
+    border-radius: 9px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, .5);
+}
+
+.decade-menu.open {
+    display: block;
+}
+
+.decade-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 9px 8px;
+    margin: 0;
+    color: #bbb;
+    font-size: .82rem;
+    font-weight: 500;
+    text-align: left;
+    text-transform: none;
+    letter-spacing: normal;
+    cursor: pointer;
+    border-radius: 6px;
+}
+
+.decade-option:hover {
+    background: #202020;
+    color: #fff;
+}
+
+.decade-option input {
+    width: 15px;
+    height: 15px;
+    margin: 0;
+    accent-color: var(--orange);
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    .controls {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .filter-group {
+        width: 100%;
+    }
+}
+
 @media (max-width: 600px) {
     .app {
         width: min(100% - 22px, 900px);
