@@ -2,19 +2,23 @@ const movieTitle = document.getElementById("movieTitle");
 const movieCount = document.getElementById("movieCount");
 const pickButton = document.getElementById("pickButton");
 const resetButton = document.getElementById("resetButton");
-const genreSelect = document.getElementById("genreSelect");
 
+// Genre filter elements
+const genreButton = document.getElementById("genreButton");
+const genreMenu = document.getElementById("genreMenu");
+const genreLabel = document.getElementById("genreLabel");
+
+// Decade filter elements
 const decadeButton = document.getElementById("decadeButton");
 const decadeMenu = document.getElementById("decadeMenu");
 const decadeLabel = document.getElementById("decadeLabel");
-const decadeCheckboxes = document.querySelectorAll(
-    ".decade-option input"
-);
+const decadeCheckboxes = document.querySelectorAll(".decade-option input");
 
 let remainingMovies = [];
 let currentGenre = "all";
 let selectedDecades = [];
 
+// Return movies matching BOTH the selected genre and selected decades.
 function getFilteredMovies() {
     return horrorMovies.filter(movie => {
         const genreMatch =
@@ -31,6 +35,7 @@ function getFilteredMovies() {
     });
 }
 
+// Rebuild and shuffle the pool using the current filters.
 function resetPool() {
     remainingMovies = [...getFilteredMovies()];
     shuffle(remainingMovies);
@@ -39,9 +44,7 @@ function resetPool() {
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
-
-        [array[i], array[j]] =
-            [array[j], array[i]];
+        [array[i], array[j]] = [array[j], array[i]];
     }
 }
 
@@ -85,14 +88,17 @@ function pickMovie() {
         `${remainingMovies.length} movies remaining in this pool`;
 }
 
-function changeGenre() {
-    currentGenre = genreSelect.value;
+function changeGenre(genre, label) {
+    currentGenre = genre;
+    genreLabel.textContent = label;
 
     resetPool();
 
     movieTitle.textContent = "???";
     movieCount.textContent =
         `${getFilteredMovies().length} movies available`;
+
+    closeAllDropdowns();
 }
 
 function updateDecadeFilter() {
@@ -116,8 +122,7 @@ function updateDecadeLabel() {
     }
 
     if (selectedDecades.length === 1) {
-        decadeLabel.textContent =
-            `${selectedDecades[0]}s`;
+        decadeLabel.textContent = `${selectedDecades[0]}s`;
         return;
     }
 
@@ -125,61 +130,72 @@ function updateDecadeLabel() {
         `${selectedDecades.length} Decades Selected`;
 }
 
-function toggleDecadeMenu() {
-    const isOpen = decadeMenu.classList.toggle("open");
+function toggleDropdown(button, menu) {
+    const isOpen = menu.classList.contains("open");
 
-    decadeButton.setAttribute(
-        "aria-expanded",
-        isOpen
-    );
+    closeAllDropdowns();
+
+    if (!isOpen) {
+        menu.classList.add("open");
+        button.setAttribute("aria-expanded", "true");
+    }
 }
 
-function closeDecadeMenu() {
+function closeAllDropdowns() {
+    genreMenu.classList.remove("open");
     decadeMenu.classList.remove("open");
 
-    decadeButton.setAttribute(
-        "aria-expanded",
-        "false"
-    );
+    genreButton.setAttribute("aria-expanded", "false");
+    decadeButton.setAttribute("aria-expanded", "false");
 }
 
-genreSelect.addEventListener(
-    "change",
-    changeGenre
-);
-
-decadeButton.addEventListener(
-    "click",
-    toggleDecadeMenu
-);
-
-decadeCheckboxes.forEach(checkbox => {
-    checkbox.addEventListener(
-        "change",
-        updateDecadeFilter
-    );
+// Genre dropdown
+genreButton.addEventListener("click", event => {
+    event.stopPropagation();
+    toggleDropdown(genreButton, genreMenu);
 });
 
+genreMenu.querySelectorAll("button").forEach(button => {
+    button.addEventListener("click", () => {
+        changeGenre(
+            button.dataset.value,
+            button.textContent.trim()
+        );
+    });
+});
+
+// Decade dropdown
+decadeButton.addEventListener("click", event => {
+    event.stopPropagation();
+    toggleDropdown(decadeButton, decadeMenu);
+});
+
+decadeCheckboxes.forEach(checkbox => {
+    checkbox.addEventListener("change", updateDecadeFilter);
+});
+
+// Keep dropdowns open while selecting multiple decades,
+// but close them when clicking elsewhere.
 document.addEventListener("click", event => {
-    if (!event.target.closest(".decade-dropdown")) {
-        closeDecadeMenu();
+    if (
+        !event.target.closest(".custom-dropdown") &&
+        !event.target.closest(".decade-dropdown")
+    ) {
+        closeAllDropdowns();
     }
 });
 
-pickButton.addEventListener(
-    "click",
-    pickMovie
-);
+pickButton.addEventListener("click", pickMovie);
 
 resetButton.addEventListener("click", () => {
     resetPool();
 
     movieTitle.textContent = "???";
-
     movieCount.textContent =
         `${getFilteredMovies().length} movies available`;
 });
 
+// Initial setup
 resetPool();
 
 movieCount.textContent =

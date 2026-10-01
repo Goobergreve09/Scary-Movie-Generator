@@ -35,93 +35,98 @@
 
         <section class="controls">
             <div class="filter-group">
-                <label for="genreSelect">Choose your fate</label>
-                <select id="genreSelect">
-                    <option value="all">All Horror Movies</option>
-                    <option value="classic">Classic Horror</option>
-                    <option value="slasher">Slashers</option>
-                    <option value="supernatural">Supernatural</option>
-                    <option value="psychological">Psychological</option>
-                    <option value="creature">Creature / Monster</option>
-                    <option value="zombie">Zombies / Infection</option>
-                    <option value="found-footage">Found Footage</option>
-                    <option value="comedy">Horror Comedy</option>
-                    <option value="sci-fi">Sci-Fi Horror</option>
-                </select>
+                <label for="genreButton">Choose your fate</label>
+
+                <div class="custom-dropdown">
+                    <button
+                        id="genreButton"
+                        class="custom-dropdown-button"
+                        type="button"
+                        aria-expanded="false"
+                        aria-haspopup="true"
+                    >
+                        <span id="genreLabel">All Horror Movies</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </button>
+
+                    <div id="genreMenu" class="custom-dropdown-menu">
+                        <button type="button" data-value="all">All Horror Movies</button>
+                        <button type="button" data-value="classic">Classic Horror</button>
+                        <button type="button" data-value="slasher">Slashers</button>
+                        <button type="button" data-value="supernatural">Supernatural</button>
+                        <button type="button" data-value="psychological">Psychological</button>
+                        <button type="button" data-value="creature">Creature / Monster</button>
+                        <button type="button" data-value="zombie">Zombies / Infection</button>
+                        <button type="button" data-value="found-footage">Found Footage</button>
+                        <button type="button" data-value="comedy">Horror Comedy</button>
+                        <button type="button" data-value="sci-fi">Sci-Fi Horror</button>
+                    </div>
+                </div>
             </div>
 
-    <div class="filter-group">
-        <label for="decadeButton">Choose decade(s)</label>
+            <div class="filter-group">
+                <label for="decadeButton">Choose decade(s)</label>
 
-        <div class="decade-dropdown">
-            <button
-                id="decadeButton"
-                class="decade-button"
-                type="button"
-                aria-expanded="false"
-            >
-                <span id="decadeLabel">All Decades</span>
-                <span class="dropdown-arrow">▼</span>
-            </button>
+                <div class="decade-dropdown">
+                    <button
+                        id="decadeButton"
+                        class="decade-button"
+                        type="button"
+                        aria-expanded="false"
+                        aria-haspopup="true"
+                    >
+                        <span id="decadeLabel">All Decades</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </button>
 
-            <div id="decadeMenu" class="decade-menu">
-                <label class="decade-option">
-                    <input type="checkbox" value="1920">
-                    <span>1920s</span>
-                </label>
-
-                <label class="decade-option">
-                    <input type="checkbox" value="1930">
-                    <span>1930s</span>
-                </label>
-
-                <label class="decade-option">
-                    <input type="checkbox" value="1940">
-                    <span>1940s</span>
-                </label>
-
-                <label class="decade-option">
-                    <input type="checkbox" value="1950">
-                    <span>1950s</span>
-                </label>
-
-                <label class="decade-option">
-                    <input type="checkbox" value="1960">
-                    <span>1960s</span>
-                </label>
-
-                <label class="decade-option">
-                    <input type="checkbox" value="1970">
-                    <span>1970s</span>
-                </label>
-
-                <label class="decade-option">
-                    <input type="checkbox" value="1980">
-                    <span>1980s</span>
-                </label>
-
-                <label class="decade-option">
-                    <input type="checkbox" value="1990">
-                    <span>1990s</span>
-                </label>
-
-                <label class="decade-option">
-                    <input type="checkbox" value="2000">
-                    <span>2000s</span>
-                </label>
-
-                <label class="decade-option">
-                    <input type="checkbox" value="2010">
-                    <span>2010s</span>
-                </label>
-
-                <label class="decade-option">
-                    <input type="checkbox" value="2020">
-                    <span>2020s</span>
-                </label>
+                    <div id="decadeMenu" class="decade-menu">
+                        <label class="decade-option">
+                            <input type="checkbox" value="1920">
+                            <span>1920s</span>
+                        </label>
+                        <label class="decade-option">
+                            <input type="checkbox" value="1930">
+                            <span>1930s</span>
+                        </label>
+                        <label class="decade-option">
+                            <input type="checkbox" value="1940">
+                            <span>1940s</span>
+                        </label>
+                        <label class="decade-option">
+                            <input type="checkbox" value="1950">
+                            <span>1950s</span>
+                        </label>
+                        <label class="decade-option">
+                            <input type="checkbox" value="1960">
+                            <span>1960s</span>
+                        </label>
+                        <label class="decade-option">
+                            <input type="checkbox" value="1970">
+                            <span>1970s</span>
+                        </label>
+                        <label class="decade-option">
+                            <input type="checkbox" value="1980">
+                            <span>1980s</span>
+                        </label>
+                        <label class="decade-option">
+                            <input type="checkbox" value="1990">
+                            <span>1990s</span>
+                        </label>
+                        <label class="decade-option">
+                            <input type="checkbox" value="2000">
+                            <span>2000s</span>
+                        </label>
+                        <label class="decade-option">
+                            <input type="checkbox" value="2010">
+                            <span>2010s</span>
+                        </label>
+                        <label class="decade-option">
+                            <input type="checkbox" value="2020">
+                            <span>2020s</span>
+                        </label>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
         </section>
 
         <footer>

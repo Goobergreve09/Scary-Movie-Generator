@@ -149,6 +149,7 @@ h1 {
         transform: scale(.9) translateY(10px);
         filter: blur(8px);
     }
+
     100% {
         opacity: 1;
         transform: scale(1) translateY(0);
@@ -274,7 +275,10 @@ footer {
     transform: rotate(18deg);
 }
 
-/* Decade dropdown */
+/* =========================================
+   DROPDOWNS
+   Both Genre and Decade use the same styling
+========================================= */
 
 .controls {
     display: flex;
@@ -283,10 +287,14 @@ footer {
     margin-top: 22px;
 }
 
+.custom-dropdown,
 .decade-dropdown {
     position: relative;
 }
 
+/* Same button appearance for both dropdowns */
+
+.custom-dropdown-button,
 .decade-button {
     width: 100%;
     border: 1px solid #333;
@@ -304,10 +312,12 @@ footer {
     transition: border-color .2s ease, background .2s ease;
 }
 
+.custom-dropdown-button:hover,
 .decade-button:hover {
     border-color: #555;
 }
 
+.custom-dropdown-button:focus,
 .decade-button:focus {
     outline: none;
     border-color: #666;
@@ -319,27 +329,67 @@ footer {
     transition: transform .2s ease;
 }
 
+.custom-dropdown-button[aria-expanded="true"] .dropdown-arrow,
 .decade-button[aria-expanded="true"] .dropdown-arrow {
     transform: rotate(180deg);
 }
 
+/* Same dropdown menu appearance */
+
+.custom-dropdown-menu,
 .decade-menu {
     position: absolute;
     top: calc(100% + 7px);
     left: 0;
     right: 0;
     z-index: 10;
+
     display: none;
+
     padding: 6px;
+
     background: #141414;
     border: 1px solid #333;
     border-radius: 9px;
+
     box-shadow: 0 15px 35px rgba(0, 0, 0, .5);
 }
 
+.custom-dropdown-menu.open,
 .decade-menu.open {
     display: block;
 }
+
+/* Genre options */
+
+.custom-dropdown-menu button {
+    width: 100%;
+    border: 0;
+    border-radius: 6px;
+
+    padding: 9px 8px;
+
+    color: #bbb;
+    background: transparent;
+
+    font-family: "Inter", Arial, sans-serif;
+    font-size: .82rem;
+    font-weight: 500;
+
+    text-align: left;
+    cursor: pointer;
+
+    transition:
+        background .15s ease,
+        color .15s ease;
+}
+
+.custom-dropdown-menu button:hover {
+    background: #202020;
+    color: #fff;
+}
+
+/* Decade options */
 
 .decade-option {
     display: flex;
@@ -371,17 +421,6 @@ footer {
 }
 
 @media (max-width: 600px) {
-    .controls {
-        flex-direction: column;
-        gap: 14px;
-    }
-
-    .filter-group {
-        width: 100%;
-    }
-}
-
-@media (max-width: 600px) {
     .app {
         width: min(100% - 22px, 900px);
         padding: 35px 0;
@@ -394,8 +433,16 @@ footer {
     #pickButton {
         width: 100%;
     }
-}
 
+    .controls {
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .filter-group {
+        width: 100%;
+    }
+}
 
 #movieLink {
     color: inherit;
