@@ -182,6 +182,7 @@ const horrorMovies = [
         { title: "A Dark Song", genre: "supernatural", year: 2016, imdbId: "tt4805316", imdbRating: 6.2, rottenTomatoes: 91 },
         { title: "Spell", genre: "supernatural", year: 2020, imdbId: "tt10736580", imdbRating: 5.5, rottenTomatoes: 50 },
         { title: "It Comes at Night", genre: "supernatural", year: 2017, imdbId: "tt4695012", imdbRating: 6.1, rottenTomatoes: 88 },
+        { title: "Clown", genre: "supernatural", year: 2014, imdbId: "tt1780798", imdbRating: 5.7, rottenTomatoes: 46 },
         { title: "Ringu", genre: "supernatural", year: 1998, imdbId: "tt0178868", imdbRating: 7.2, rottenTomatoes: 98 },
         { title: "The Grudge", genre: "supernatural", year: 2004, imdbId: "tt0391198", imdbRating: 5.9, rottenTomatoes: 41 },
         { title: "The Grudge 2", genre: "supernatural", year: 2006, imdbId: "tt0433386", imdbRating: 5.1, rottenTomatoes: 12 },
