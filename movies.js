@@ -224,6 +224,7 @@ const horrorMovies = [
         { title: "Abigail", genre: "supernatural", year: 2024, imdbId: "tt27489557", imdbRating: 6.5, rottenTomatoes: 83 },
         { title: "The Watchers", genre: "supernatural", year: 2024, imdbId: "tt26736843", imdbRating: 5.7, rottenTomatoes: 32 },
         { title: "Under the Shadow", genre: "supernatural", year: 2016, imdbId: "tt4273292", imdbRating: 6.8, rottenTomatoes: 99 },
+        { title: "Undertone", genre: "supernatural", year: 2025, imdbId: "tt35892608", imdbRating: 5.9, rottenTomatoes: 74 },
         { title: "The Deliverance", genre: "supernatural", year: 2024, imdbId: "tt4196566", imdbRating: 5.1, rottenTomatoes: 33 },
         { title: "Immaculate", genre: "supernatural", year: 2024, imdbId: "tt23137390", imdbRating: 5.8, rottenTomatoes: 71 },
         { title: "Oddity", genre: "supernatural", year: 2024, imdbId: "tt26470109", imdbRating: 6.7, rottenTomatoes: 96 },
