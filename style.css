@@ -441,6 +441,76 @@ footer {
   cursor: pointer;
 }
 
+.filter-container {
+  width: min(760px, 100%);
+  margin: 22px auto 0;
+}
+
+.filters-button {
+  width: 100%;
+  border: 1px solid #333;
+  border-radius: 9px;
+  padding: 13px 16px;
+  color: #ddd;
+  background: #141414;
+  font-family: inherit;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition:
+    border-color 0.2s ease,
+    background 0.2s ease;
+}
+
+.filters-button:hover {
+  border-color: #555;
+  background: #181818;
+}
+
+.filters-button:focus {
+  outline: none;
+  border-color: #666;
+}
+
+.filters-button .dropdown-arrow {
+  transition: transform 0.2s ease;
+}
+
+.filters-panel {
+  display: none;
+  margin-top: 8px;
+  padding: 22px;
+  border: 1px solid #333;
+  border-radius: 12px;
+  background: rgba(15, 15, 15, 0.96);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
+}
+
+.filters-panel.open {
+  display: block;
+}
+
+.filters-panel .controls {
+  margin-top: 0;
+}
+
+.filters-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.filters-icon {
+  width: 16px;
+  height: 16px;
+  color: var(--orange);
+  flex-shrink: 0;
+}
+
 @media (max-width: 600px) {
   .app {
     width: min(100% - 22px, 900px);
@@ -462,6 +532,13 @@ footer {
 
   .filter-group {
     width: 100%;
+  }
+    .filter-container {
+    width: 100%;
+  }
+
+  .filters-panel {
+    padding: 18px 14px;
   }
 }
 

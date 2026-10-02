@@ -1,201 +1,257 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>October Horror Movie Generator</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
     <div class="fog fog-one"></div>
     <div class="fog fog-two"></div>
 
     <main class="app">
-        <header class="hero">
-            <p class="eyebrow">31 Nights of Fear</p>
-            <h1>What Are We Watching?</h1>
-            <p class="subtitle">Let fate choose your next horror movie.</p>
-        </header>
+      <header class="hero">
+        <p class="eyebrow">31 Nights of Fear</p>
+        <h1>What Are We Watching?</h1>
+        <p class="subtitle">Let fate choose your next horror movie.</p>
+      </header>
 
-        <section class="generator-card" aria-live="polite">
-            <div class="skull">☠</div>
-            <p class="result-label">TONIGHT'S PICK</p>
-            <h2 id="movieTitle">???</h2>
-            <p id="movieCount" class="movie-count">Hundreds of movies are waiting...</p>
+      <section class="generator-card" aria-live="polite">
+        <div class="skull">☠</div>
+        <p class="result-label">TONIGHT'S PICK</p>
+        <h2 id="movieTitle">???</h2>
+        <p id="movieCount" class="movie-count">
+          Hundreds of movies are waiting...
+        </p>
 
-            <button id="pickButton" type="button">
-                <span class="button-icon">🎃</span>
-                PICK A MOVIE
-            </button>
+        <button id="pickButton" type="button">
+          <span class="button-icon">🎃</span>
+          PICK A MOVIE
+        </button>
 
-            <button id="resetButton" class="secondary-button" type="button">
-                Reset Movie History
-            </button>
-        </section>
+        <button id="resetButton" class="secondary-button" type="button">
+          Reset Movie History
+        </button>
+      </section>
 
-        <section class="controls">
-            <!-- Genre -->
+      <section class="filter-container">
+        <button
+          id="filtersButton"
+          class="filters-button"
+          type="button"
+          aria-expanded="false"
+          aria-controls="filtersPanel"
+        >
+          <span class="filters-title">
+            <svg class="filters-icon" viewBox="0 0 24 24" aria-hidden="true">
+              <path
+                d="M4 7h10M18 7h2M4 17h2M10 17h10M14 4v6M8 14v6"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+              />
+            </svg>
+            <span>FILTERS</span>
+          </span>
+
+          <span id="filtersArrow" class="dropdown-arrow">▼</span>
+        </button>
+
+        <div id="filtersPanel" class="filters-panel">
+          <section class="controls">
             <div class="filter-group">
-                <label for="genreButton">Choose your fate</label>
+              <label for="genreButton">Choose your fate</label>
 
-                <div class="custom-dropdown">
-                    <button
-                        id="genreButton"
-                        class="custom-dropdown-button"
-                        type="button"
-                        aria-expanded="false"
-                        aria-haspopup="true"
-                    >
-                        <span id="genreLabel">All Horror Movies</span>
-                        <span class="dropdown-arrow">▼</span>
-                    </button>
+              <div class="custom-dropdown">
+                <button
+                  id="genreButton"
+                  class="custom-dropdown-button"
+                  type="button"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                >
+                  <span id="genreLabel">All Horror Movies</span>
+                  <span class="dropdown-arrow">▼</span>
+                </button>
 
-                    <div id="genreMenu" class="custom-dropdown-menu">
-                        <button type="button" data-value="all">All Horror Movies</button>
-                        <button type="button" data-value="classic">Classic Horror</button>
-                        <button type="button" data-value="slasher">Slashers</button>
-                        <button type="button" data-value="supernatural">Supernatural</button>
-                        <button type="button" data-value="psychological">Psychological</button>
-                        <button type="button" data-value="creature">Creature / Monster</button>
-                        <button type="button" data-value="zombie">Zombies / Infection</button>
-                        <button type="button" data-value="found-footage">Found Footage</button>
-                        <button type="button" data-value="comedy">Horror Comedy</button>
-                        <button type="button" data-value="sci-fi">Sci-Fi Horror</button>
-                    </div>
+                <div id="genreMenu" class="custom-dropdown-menu">
+                  <button type="button" data-value="all">
+                    All Horror Movies
+                  </button>
+                  <button type="button" data-value="classic">
+                    Classic Horror
+                  </button>
+                  <button type="button" data-value="slasher">Slashers</button>
+                  <button type="button" data-value="supernatural">
+                    Supernatural
+                  </button>
+                  <button type="button" data-value="psychological">
+                    Psychological
+                  </button>
+                  <button type="button" data-value="creature">
+                    Creature / Monster
+                  </button>
+                  <button type="button" data-value="zombie">
+                    Zombies / Infection
+                  </button>
+                  <button type="button" data-value="found-footage">
+                    Found Footage
+                  </button>
+                  <button type="button" data-value="comedy">
+                    Horror Comedy
+                  </button>
+                  <button type="button" data-value="sci-fi">
+                    Sci-Fi Horror
+                  </button>
                 </div>
+              </div>
             </div>
 
-            <!-- Decade -->
             <div class="filter-group">
-                <label for="decadeButton">Choose decade(s)</label>
+              <label for="decadeButton">Choose decade(s)</label>
 
-                <div class="decade-dropdown">
-                    <button
-                        id="decadeButton"
-                        class="decade-button"
-                        type="button"
-                        aria-expanded="false"
-                        aria-haspopup="true"
-                    >
-                        <span id="decadeLabel">All Decades</span>
-                        <span class="dropdown-arrow">▼</span>
-                    </button>
+              <div class="decade-dropdown">
+                <button
+                  id="decadeButton"
+                  class="decade-button"
+                  type="button"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                >
+                  <span id="decadeLabel">All Decades</span>
+                  <span class="dropdown-arrow">▼</span>
+                </button>
 
-                    <div id="decadeMenu" class="decade-menu">
-                        <label class="decade-option">
-                            <input type="checkbox" value="1920">
-                            <span>1920s</span>
-                        </label>
-                        <label class="decade-option">
-                            <input type="checkbox" value="1930">
-                            <span>1930s</span>
-                        </label>
-                        <label class="decade-option">
-                            <input type="checkbox" value="1940">
-                            <span>1940s</span>
-                        </label>
-                        <label class="decade-option">
-                            <input type="checkbox" value="1950">
-                            <span>1950s</span>
-                        </label>
-                        <label class="decade-option">
-                            <input type="checkbox" value="1960">
-                            <span>1960s</span>
-                        </label>
-                        <label class="decade-option">
-                            <input type="checkbox" value="1970">
-                            <span>1970s</span>
-                        </label>
-                        <label class="decade-option">
-                            <input type="checkbox" value="1980">
-                            <span>1980s</span>
-                        </label>
-                        <label class="decade-option">
-                            <input type="checkbox" value="1990">
-                            <span>1990s</span>
-                        </label>
-                        <label class="decade-option">
-                            <input type="checkbox" value="2000">
-                            <span>2000s</span>
-                        </label>
-                        <label class="decade-option">
-                            <input type="checkbox" value="2010">
-                            <span>2010s</span>
-                        </label>
-                        <label class="decade-option">
-                            <input type="checkbox" value="2020">
-                            <span>2020s</span>
-                        </label>
-                    </div>
+                <div id="decadeMenu" class="decade-menu">
+                  <label class="decade-option">
+                    <input type="checkbox" value="1920" />
+                    <span>1920s</span>
+                  </label>
+
+                  <label class="decade-option">
+                    <input type="checkbox" value="1930" />
+                    <span>1930s</span>
+                  </label>
+
+                  <label class="decade-option">
+                    <input type="checkbox" value="1940" />
+                    <span>1940s</span>
+                  </label>
+
+                  <label class="decade-option">
+                    <input type="checkbox" value="1950" />
+                    <span>1950s</span>
+                  </label>
+
+                  <label class="decade-option">
+                    <input type="checkbox" value="1960" />
+                    <span>1960s</span>
+                  </label>
+
+                  <label class="decade-option">
+                    <input type="checkbox" value="1970" />
+                    <span>1970s</span>
+                  </label>
+
+                  <label class="decade-option">
+                    <input type="checkbox" value="1980" />
+                    <span>1980s</span>
+                  </label>
+
+                  <label class="decade-option">
+                    <input type="checkbox" value="1990" />
+                    <span>1990s</span>
+                  </label>
+
+                  <label class="decade-option">
+                    <input type="checkbox" value="2000" />
+                    <span>2000s</span>
+                  </label>
+
+                  <label class="decade-option">
+                    <input type="checkbox" value="2010" />
+                    <span>2010s</span>
+                  </label>
+
+                  <label class="decade-option">
+                    <input type="checkbox" value="2020" />
+                    <span>2020s</span>
+                  </label>
                 </div>
+              </div>
             </div>
 
-            <!-- IMDb Rating -->
             <div class="filter-group">
-                <label for="imdbButton">Choose IMDb rating</label>
+              <label for="imdbButton">Choose IMDb rating</label>
 
-                <div class="custom-dropdown">
-                    <button
-                        id="imdbButton"
-                        class="custom-dropdown-button"
-                        type="button"
-                        aria-expanded="false"
-                        aria-haspopup="true"
-                    >
-                        <span id="imdbLabel">All IMDb Ratings</span>
-                        <span class="dropdown-arrow">▼</span>
-                    </button>
+              <div class="custom-dropdown">
+                <button
+                  id="imdbButton"
+                  class="custom-dropdown-button"
+                  type="button"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                >
+                  <span id="imdbLabel">All IMDb Ratings</span>
+                  <span class="dropdown-arrow">▼</span>
+                </button>
 
-                    <div id="imdbMenu" class="custom-dropdown-menu">
-                        <button type="button" data-value="all">All IMDb Ratings</button>
-                        <button type="button" data-value="9">9.0+</button>
-                        <button type="button" data-value="8.5">8.5+</button>
-                        <button type="button" data-value="8">8.0+</button>
-                        <button type="button" data-value="7.5">7.5+</button>
-                        <button type="button" data-value="7">7.0+</button>
-                        <button type="button" data-value="6.5">6.5+</button>
-                        <button type="button" data-value="6">6.0+</button>
-                        <button type="button" data-value="5">5.0+</button>
-                    </div>
+                <div id="imdbMenu" class="custom-dropdown-menu">
+                  <button type="button" data-value="all">
+                    All IMDb Ratings
+                  </button>
+                  <button type="button" data-value="9">9.0+</button>
+                  <button type="button" data-value="8.5">8.5+</button>
+                  <button type="button" data-value="8">8.0+</button>
+                  <button type="button" data-value="7.5">7.5+</button>
+                  <button type="button" data-value="7">7.0+</button>
+                  <button type="button" data-value="6.5">6.5+</button>
+                  <button type="button" data-value="6">6.0+</button>
+                  <button type="button" data-value="5">5.0+</button>
                 </div>
+              </div>
             </div>
 
-            <!-- Rotten Tomatoes -->
             <div class="filter-group">
-                <label for="rtButton">Choose Rotten Tomatoes</label>
+              <label for="rtButton">Choose Rotten Tomatoes</label>
 
-                <div class="custom-dropdown">
-                    <button
-                        id="rtButton"
-                        class="custom-dropdown-button"
-                        type="button"
-                        aria-expanded="false"
-                        aria-haspopup="true"
-                    >
-                        <span id="rtLabel">All Rotten Tomatoes</span>
-                        <span class="dropdown-arrow">▼</span>
-                    </button>
+              <div class="custom-dropdown">
+                <button
+                  id="rtButton"
+                  class="custom-dropdown-button"
+                  type="button"
+                  aria-expanded="false"
+                  aria-haspopup="true"
+                >
+                  <span id="rtLabel">All Rotten Tomatoes</span>
+                  <span class="dropdown-arrow">▼</span>
+                </button>
 
-                    <div id="rtMenu" class="custom-dropdown-menu">
-                        <button type="button" data-value="all">All Rotten Tomatoes</button>
-                        <button type="button" data-value="90">90%+</button>
-                        <button type="button" data-value="80">80%+</button>
-                        <button type="button" data-value="70">70%+</button>
-                        <button type="button" data-value="60">60%+</button>
-                        <button type="button" data-value="50">50%+</button>
-                        <button type="button" data-value="40">40%+</button>
-                    </div>
+                <div id="rtMenu" class="custom-dropdown-menu">
+                  <button type="button" data-value="all">
+                    All Rotten Tomatoes
+                  </button>
+                  <button type="button" data-value="90">90%+</button>
+                  <button type="button" data-value="80">80%+</button>
+                  <button type="button" data-value="70">70%+</button>
+                  <button type="button" data-value="60">60%+</button>
+                  <button type="button" data-value="50">50%+</button>
+                  <button type="button" data-value="40">40%+</button>
                 </div>
+              </div>
             </div>
-        </section>
+          </section>
+        </div>
+      </section>
 
-        <footer>
-            <p>Pick a movie. Turn off the lights. Regret everything.</p>
-        </footer>
+      <footer>
+        <p>Pick a movie. Turn off the lights. Regret everything.</p>
+      </footer>
     </main>
 
     <script src="movies.js"></script>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
-

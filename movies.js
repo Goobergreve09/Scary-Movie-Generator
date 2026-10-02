@@ -231,6 +231,7 @@ const horrorMovies = [
         { title: "Longlegs", genre: "supernatural", year: 2024, imdbId: "tt23468450", imdbRating: 6.5, rottenTomatoes: 85 },
         { title: "Get Out", genre: "psychological", year: 2017, imdbId: "tt5052448", imdbRating: 7.8, rottenTomatoes: 98 },
         { title: "Us", genre: "psychological", year: 2019, imdbId: "tt6857112", imdbRating: 6.8, rottenTomatoes: 93 },
+        { title: "Send Help", genre: "psychological", year: 2026, imdbId: "tt8036976", imdbRating: 6.7, rottenTomatoes: 92 },
         { title: "High Tension", genre: "psychological", year: 2003, imdbId: "tt0338095", imdbRating: 6.7, rottenTomatoes: 41 },
         { title: "Martyrs", genre: "psychological", year: 2008, imdbId: "tt1029234", imdbRating: 7.0, rottenTomatoes: 66 },
         { title: "Super Dark Times", genre: "psychological", year: 2017, imdbId: "tt5112578", imdbRating: 6.6, rottenTomatoes: 89 },

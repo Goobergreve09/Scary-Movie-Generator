@@ -3,6 +3,10 @@ const movieCount = document.getElementById("movieCount");
 const pickButton = document.getElementById("pickButton");
 const resetButton = document.getElementById("resetButton");
 
+const filtersButton = document.getElementById("filtersButton");
+const filtersPanel = document.getElementById("filtersPanel");
+const filtersArrow = document.getElementById("filtersArrow");
+
 const genreButton = document.getElementById("genreButton");
 const genreMenu = document.getElementById("genreMenu");
 const genreLabel = document.getElementById("genreLabel");
@@ -77,7 +81,8 @@ function pickMovie() {
 
     if (remainingMovies.length === 0) {
         movieTitle.textContent = "NO MOVIES FOUND";
-        movieCount.textContent = "Try changing one or more filters";
+        movieCount.textContent =
+            "Try changing one or more filters";
         return;
     }
 
@@ -148,7 +153,8 @@ function updateDecadeLabel() {
     }
 
     if (selectedDecades.length === 1) {
-        decadeLabel.textContent = `${selectedDecades[0]}s`;
+        decadeLabel.textContent =
+            `${selectedDecades[0]}s`;
         return;
     }
 
@@ -194,6 +200,28 @@ function closeAllDropdowns() {
     imdbButton.setAttribute("aria-expanded", "false");
     rtButton.setAttribute("aria-expanded", "false");
 }
+
+function closeFilters() {
+    closeAllDropdowns();
+
+    filtersPanel.classList.remove("open");
+    filtersButton.setAttribute("aria-expanded", "false");
+    filtersArrow.style.transform = "rotate(0deg)";
+}
+
+filtersButton.addEventListener("click", event => {
+    event.stopPropagation();
+
+    const isOpen = filtersPanel.classList.contains("open");
+
+    if (isOpen) {
+        closeFilters();
+    } else {
+        filtersPanel.classList.add("open");
+        filtersButton.setAttribute("aria-expanded", "true");
+        filtersArrow.style.transform = "rotate(180deg)";
+    }
+});
 
 genreButton.addEventListener("click", event => {
     event.stopPropagation();
@@ -251,11 +279,8 @@ rtMenu.querySelectorAll("button").forEach(button => {
 });
 
 document.addEventListener("click", event => {
-    if (
-        !event.target.closest(".custom-dropdown") &&
-        !event.target.closest(".decade-dropdown")
-    ) {
-        closeAllDropdowns();
+    if (!event.target.closest(".filter-container")) {
+        closeFilters();
     }
 });
 
