@@ -3,22 +3,29 @@ const movieCount = document.getElementById("movieCount");
 const pickButton = document.getElementById("pickButton");
 const resetButton = document.getElementById("resetButton");
 
-// Genre filter elements
 const genreButton = document.getElementById("genreButton");
 const genreMenu = document.getElementById("genreMenu");
 const genreLabel = document.getElementById("genreLabel");
 
-// Decade filter elements
 const decadeButton = document.getElementById("decadeButton");
 const decadeMenu = document.getElementById("decadeMenu");
 const decadeLabel = document.getElementById("decadeLabel");
 const decadeCheckboxes = document.querySelectorAll(".decade-option input");
 
+const imdbButton = document.getElementById("imdbButton");
+const imdbMenu = document.getElementById("imdbMenu");
+const imdbLabel = document.getElementById("imdbLabel");
+
+const rtButton = document.getElementById("rtButton");
+const rtMenu = document.getElementById("rtMenu");
+const rtLabel = document.getElementById("rtLabel");
+
 let remainingMovies = [];
 let currentGenre = "all";
 let selectedDecades = [];
+let selectedImdbRating = null;
+let selectedRtRating = null;
 
-// Return movies matching BOTH the selected genre and selected decades.
 function getFilteredMovies() {
     return horrorMovies.filter(movie => {
         const genreMatch =
@@ -31,11 +38,26 @@ function getFilteredMovies() {
                 Math.floor(movie.year / 10) * 10
             );
 
-        return genreMatch && decadeMatch;
+        const imdbMatch =
+            selectedImdbRating === null ||
+            (
+                movie.imdbRating !== null &&
+                movie.imdbRating !== undefined &&
+                Number(movie.imdbRating) >= selectedImdbRating
+            );
+
+        const rtMatch =
+            selectedRtRating === null ||
+            (
+                movie.rottenTomatoes !== null &&
+                movie.rottenTomatoes !== undefined &&
+                Number(movie.rottenTomatoes) >= selectedRtRating
+            );
+
+        return genreMatch && decadeMatch && imdbMatch && rtMatch;
     });
 }
 
-// Rebuild and shuffle the pool using the current filters.
 function resetPool() {
     remainingMovies = [...getFilteredMovies()];
     shuffle(remainingMovies);
@@ -51,6 +73,12 @@ function shuffle(array) {
 function pickMovie() {
     if (remainingMovies.length === 0) {
         resetPool();
+    }
+
+    if (remainingMovies.length === 0) {
+        movieTitle.textContent = "NO MOVIES FOUND";
+        movieCount.textContent = "Try changing one or more filters";
+        return;
     }
 
     const selectedMovie = remainingMovies.pop();
@@ -88,16 +116,19 @@ function pickMovie() {
         `${remainingMovies.length} movies remaining in this pool`;
 }
 
-function changeGenre(genre, label) {
-    currentGenre = genre;
-    genreLabel.textContent = label;
-
+function updateMovieDisplay() {
     resetPool();
 
     movieTitle.textContent = "???";
     movieCount.textContent =
         `${getFilteredMovies().length} movies available`;
+}
 
+function changeGenre(genre, label) {
+    currentGenre = genre;
+    genreLabel.textContent = label;
+
+    updateMovieDisplay();
     closeAllDropdowns();
 }
 
@@ -107,12 +138,7 @@ function updateDecadeFilter() {
         .map(checkbox => Number(checkbox.value));
 
     updateDecadeLabel();
-
-    resetPool();
-
-    movieTitle.textContent = "???";
-    movieCount.textContent =
-        `${getFilteredMovies().length} movies available`;
+    updateMovieDisplay();
 }
 
 function updateDecadeLabel() {
@@ -130,6 +156,22 @@ function updateDecadeLabel() {
         `${selectedDecades.length} Decades Selected`;
 }
 
+function changeImdbRating(rating, label) {
+    selectedImdbRating = rating;
+    imdbLabel.textContent = label;
+
+    updateMovieDisplay();
+    closeAllDropdowns();
+}
+
+function changeRtRating(rating, label) {
+    selectedRtRating = rating;
+    rtLabel.textContent = label;
+
+    updateMovieDisplay();
+    closeAllDropdowns();
+}
+
 function toggleDropdown(button, menu) {
     const isOpen = menu.classList.contains("open");
 
@@ -144,12 +186,15 @@ function toggleDropdown(button, menu) {
 function closeAllDropdowns() {
     genreMenu.classList.remove("open");
     decadeMenu.classList.remove("open");
+    imdbMenu.classList.remove("open");
+    rtMenu.classList.remove("open");
 
     genreButton.setAttribute("aria-expanded", "false");
     decadeButton.setAttribute("aria-expanded", "false");
+    imdbButton.setAttribute("aria-expanded", "false");
+    rtButton.setAttribute("aria-expanded", "false");
 }
 
-// Genre dropdown
 genreButton.addEventListener("click", event => {
     event.stopPropagation();
     toggleDropdown(genreButton, genreMenu);
@@ -164,7 +209,6 @@ genreMenu.querySelectorAll("button").forEach(button => {
     });
 });
 
-// Decade dropdown
 decadeButton.addEventListener("click", event => {
     event.stopPropagation();
     toggleDropdown(decadeButton, decadeMenu);
@@ -174,8 +218,38 @@ decadeCheckboxes.forEach(checkbox => {
     checkbox.addEventListener("change", updateDecadeFilter);
 });
 
-// Keep dropdowns open while selecting multiple decades,
-// but close them when clicking elsewhere.
+imdbButton.addEventListener("click", event => {
+    event.stopPropagation();
+    toggleDropdown(imdbButton, imdbMenu);
+});
+
+imdbMenu.querySelectorAll("button").forEach(button => {
+    button.addEventListener("click", () => {
+        const value = button.dataset.value;
+
+        changeImdbRating(
+            value === "all" ? null : Number(value),
+            button.textContent.trim()
+        );
+    });
+});
+
+rtButton.addEventListener("click", event => {
+    event.stopPropagation();
+    toggleDropdown(rtButton, rtMenu);
+});
+
+rtMenu.querySelectorAll("button").forEach(button => {
+    button.addEventListener("click", () => {
+        const value = button.dataset.value;
+
+        changeRtRating(
+            value === "all" ? null : Number(value),
+            button.textContent.trim()
+        );
+    });
+});
+
 document.addEventListener("click", event => {
     if (
         !event.target.closest(".custom-dropdown") &&
@@ -188,14 +262,24 @@ document.addEventListener("click", event => {
 pickButton.addEventListener("click", pickMovie);
 
 resetButton.addEventListener("click", () => {
-    resetPool();
+    currentGenre = "all";
+    selectedDecades = [];
+    selectedImdbRating = null;
+    selectedRtRating = null;
 
-    movieTitle.textContent = "???";
-    movieCount.textContent =
-        `${getFilteredMovies().length} movies available`;
+    genreLabel.textContent = "All Horror Movies";
+    decadeLabel.textContent = "All Decades";
+    imdbLabel.textContent = "All IMDb Ratings";
+    rtLabel.textContent = "All Rotten Tomatoes";
+
+    decadeCheckboxes.forEach(checkbox => {
+        checkbox.checked = false;
+    });
+
+    closeAllDropdowns();
+    updateMovieDisplay();
 });
 
-// Initial setup
 resetPool();
 
 movieCount.textContent =

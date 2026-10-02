@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,6 +35,7 @@
         </section>
 
         <section class="controls">
+            <!-- Genre -->
             <div class="filter-group">
                 <label for="genreButton">Choose your fate</label>
 
@@ -64,6 +66,7 @@
                 </div>
             </div>
 
+            <!-- Decade -->
             <div class="filter-group">
                 <label for="decadeButton">Choose decade(s)</label>
 
@@ -127,6 +130,64 @@
                     </div>
                 </div>
             </div>
+
+            <!-- IMDb Rating -->
+            <div class="filter-group">
+                <label for="imdbButton">Choose IMDb rating</label>
+
+                <div class="custom-dropdown">
+                    <button
+                        id="imdbButton"
+                        class="custom-dropdown-button"
+                        type="button"
+                        aria-expanded="false"
+                        aria-haspopup="true"
+                    >
+                        <span id="imdbLabel">All IMDb Ratings</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </button>
+
+                    <div id="imdbMenu" class="custom-dropdown-menu">
+                        <button type="button" data-value="all">All IMDb Ratings</button>
+                        <button type="button" data-value="9">9.0+</button>
+                        <button type="button" data-value="8.5">8.5+</button>
+                        <button type="button" data-value="8">8.0+</button>
+                        <button type="button" data-value="7.5">7.5+</button>
+                        <button type="button" data-value="7">7.0+</button>
+                        <button type="button" data-value="6.5">6.5+</button>
+                        <button type="button" data-value="6">6.0+</button>
+                        <button type="button" data-value="5">5.0+</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Rotten Tomatoes -->
+            <div class="filter-group">
+                <label for="rtButton">Choose Rotten Tomatoes</label>
+
+                <div class="custom-dropdown">
+                    <button
+                        id="rtButton"
+                        class="custom-dropdown-button"
+                        type="button"
+                        aria-expanded="false"
+                        aria-haspopup="true"
+                    >
+                        <span id="rtLabel">All Rotten Tomatoes</span>
+                        <span class="dropdown-arrow">▼</span>
+                    </button>
+
+                    <div id="rtMenu" class="custom-dropdown-menu">
+                        <button type="button" data-value="all">All Rotten Tomatoes</button>
+                        <button type="button" data-value="90">90%+</button>
+                        <button type="button" data-value="80">80%+</button>
+                        <button type="button" data-value="70">70%+</button>
+                        <button type="button" data-value="60">60%+</button>
+                        <button type="button" data-value="50">50%+</button>
+                        <button type="button" data-value="40">40%+</button>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <footer>
@@ -138,3 +199,4 @@
     <script src="script.js"></script>
 </body>
 </html>
+```
