@@ -511,6 +511,50 @@ footer {
   flex-shrink: 0;
 }
 
+/* =========================================
+   MOVIE METADATA / RATINGS
+========================================= */
+
+.movie-meta {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  color: #aaa;
+  font-size: 0.82rem;
+  font-weight: 700;
+  margin: 0 auto 18px;
+}
+
+.movie-year {
+  color: #aaa;
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+}
+
+.rating {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.rating-logo {
+  display: block;
+  width: auto;
+  height: 21px;
+  object-fit: contain;
+}
+
+.imdb-logo {
+  max-width: 40px;
+}
+
+.rt-logo {
+  max-width: 24px;
+}
+
+
 @media (max-width: 600px) {
   .app {
     width: min(100% - 22px, 900px);
@@ -539,6 +583,10 @@ footer {
 
   .filters-panel {
     padding: 18px 14px;
+  }
+    .movie-meta {
+    gap: 15px;
+    font-size: 0.78rem;
   }
 }
 

@@ -541,7 +541,7 @@ const horrorMovies = [
         { title: "What We Do in the Shadows", genre: "comedy", year: 2014, imdbId: "tt3416742", imdbRating: 7.6, rottenTomatoes: 96 },
         { title: "Zombieland", genre: "comedy", year: 2009, imdbId: "tt1156398", imdbRating: 7.5, rottenTomatoes: 89 },
         { title: "Zombieland: Double Tap", genre: "comedy", year: 2019, imdbId: "tt1560220", imdbRating: 6.6, rottenTomatoes: 68 },
-        { title: "Cabin in the Woods", genre: "comedy", year: 2011, imdbId: "tt1259521", imdbRating: 7.0, rottenTomatoes: 100 },
+        { title: "Cabin in the Woods", genre: "comedy", year: 2011, imdbId: "tt1259521", imdbRating: 7.0, rottenTomatoes: 92 },
         { title: "Fright Night", genre: "comedy", year: 2011, imdbId: "tt1438176", imdbRating: 6.4, rottenTomatoes: 100 },
         { title: "Gremlins", genre: "comedy", year: 1984, imdbId: "tt0087363", imdbRating: 7.3, rottenTomatoes: 86 },
         { title: "Gremlins 2: The New Batch", genre: "comedy", year: 1990, imdbId: "tt0099700", imdbRating: 6.5, rottenTomatoes: 71 },
