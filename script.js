@@ -7,6 +7,7 @@ const movieMeta = document.getElementById("movieMeta");
 const movieYear = document.getElementById("movieYear");
 const imdbRating = document.getElementById("imdbRating");
 const rtRating = document.getElementById("rtRating");
+const movieWarning = document.getElementById("movieWarning");
 
 const filtersButton = document.getElementById("filtersButton");
 const filtersPanel = document.getElementById("filtersPanel");
@@ -82,23 +83,25 @@ function pickMovie() {
     return;
   }
 
- const selectedMovie = remainingMovies.pop();
+  const selectedMovie = remainingMovies.pop();
 
-movieMeta.style.display = "flex";
+  movieMeta.style.display = "flex";
 
-movieYear.textContent = selectedMovie.year;
+  movieYear.textContent = selectedMovie.year;
 
-imdbRating.textContent =
-    selectedMovie.imdbRating !== null &&
-    selectedMovie.imdbRating !== undefined
-        ? selectedMovie.imdbRating
-        : "N/A";
+  imdbRating.textContent =
+    selectedMovie.imdbRating !== null && selectedMovie.imdbRating !== undefined
+      ? selectedMovie.imdbRating
+      : "N/A";
 
-rtRating.textContent =
+  rtRating.textContent =
     selectedMovie.rottenTomatoes !== null &&
     selectedMovie.rottenTomatoes !== undefined
-        ? `${selectedMovie.rottenTomatoes}%`
-        : "N/A";
+      ? `${selectedMovie.rottenTomatoes}%`
+      : "N/A";
+
+  movieWarning.textContent = selectedMovie.warning || "";
+  movieWarning.style.display = selectedMovie.warning ? "block" : "none";
 
   movieTitle.classList.remove("reveal");
   void movieTitle.offsetWidth;
@@ -128,18 +131,20 @@ rtRating.textContent =
 }
 
 function updateMovieDisplay() {
-    resetPool();
+  resetPool();
 
-    movieTitle.textContent = "???";
+  movieTitle.textContent = "???";
 
-    movieMeta.style.display = "none";
+  movieMeta.style.display = "none";
 
-    movieYear.textContent = "";
-    imdbRating.textContent = "";
-    rtRating.textContent = "";
+  movieYear.textContent = "";
+  imdbRating.textContent = "";
+  rtRating.textContent = "";
 
-    movieCount.textContent =
-        `${getFilteredMovies().length} movies available`;
+  movieWarning.textContent = "";
+  movieWarning.style.display = "none";
+
+  movieCount.textContent = `${getFilteredMovies().length} movies available`;
 }
 
 function changeGenre(genre, label) {

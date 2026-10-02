@@ -57,25 +57,31 @@
         <h2 id="movieTitle">???</h2>
 
         <div class="movie-meta" id="movieMeta">
-          <span class="movie-year" id="movieYear"></span>
+          <div class="movie-info">
+            <span class="movie-year" id="movieYear"></span>
 
-          <span class="rating">
-            <img
-              class="rating-logo imdb-logo"
-              src="Assets/images/imdb.jpg"
-              alt="IMDb Logo"
-            />
-            <span id="imdbRating"></span>
-          </span>
+            <div class="movie-ratings">
+              <span class="rating">
+                <img
+                  class="rating-logo imdb-logo"
+                  src="Assets/images/imdb.jpg"
+                  alt="IMDb"
+                />
+                <span id="imdbRating"></span>
+              </span>
 
-          <span class="rating">
-            <img
-              class="rating-logo rt-logo"
-              src="Assets/images/Rotten_Tomatoes.webp"
-              alt="Rotten Tomatoes Logo"
-            />
-            <span id="rtRating"></span>
-          </span>
+              <span class="rating">
+                <img
+                  class="rating-logo rt-logo"
+                  src="Assets/images/Rotten_Tomatoes.webp"
+                  alt="Rotten Tomatoes"
+                />
+                <span id="rtRating"></span>
+              </span>
+            </div>
+          </div>
+
+          <div class="movie-warning" id="movieWarning"></div>
         </div>
         <p id="movieCount" class="movie-count">
           Hundreds of movies are waiting...
